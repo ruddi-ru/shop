@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Red&BlackWear | Official merch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8b0000 0%, #1a0000 100%);
+            padding: 30px 25px;
+            border-bottom: 4px solid #ff2222;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ff2222;
+            box-shadow: 0 0 20px rgba(255,0,0,0.4);
+            overflow: hidden;
+        }
+
+        @media (max-width: 500px) {
+            .logo-icon {
+                width: 65px;
+                height: 65px;
+            }
+        }
+
+        .logo-text {
+            text-align: left;
+        }
+
+        .logo-text .main {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        .logo-text .sub {
+            font-size: 12px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 550px) {
+            .logo-text .main {
+                font-size: 24px;
+                letter-spacing: 1px;
+            }
+            .logo-text .sub {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+        }
+
+        .header-right {
+            font-size: 14px;
+            color: #ffffff;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 15px;
+            background: #111;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #222;
+        }
+
+        .category-btn {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #8b0000;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 40px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 500px) {
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #8b0000;
+            border-color: #ff4444;
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(255,0,0,0.3);
+        }
+
+        .filters-section {
+            background: #0d0d0d;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 20px;
+            border-left: 4px solid #8b0000;
+        }
+
+        .filters-title {
+            color: #ff4444;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .filter-buttons::-webkit-scrollbar-track {
+            background: #222;
+            border-radius: 10px;
+        }
+
+        .filter-buttons::-webkit-scrollbar-thumb {
+            background: #8b0000;
+            border-radius: 10px;
+        }
+
+        .filter-btn {
+            background: #1a1a1a;
+            color: #ddd;
+            border: 1px solid #333;
+            padding: 8px 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.2s;
+            font-size: 13px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .filter-btn.active {
+            background: #8b0000;
+            border-color: #ff2222;
+            color: white;
+            box-shadow: 0 0 8px rgba(255,0,0,0.5);
+        }
+
+        .filter-btn:hover {
+            background: #b30000;
+            color: white;
+        }
+
+        .sort-section {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px 15px 0 15px;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sort-label {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .sort-btn {
+            background: #1a1a1a;
+            color: #ddd;
+            border: 1px solid #8b0000;
+            padding: 8px 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .sort-btn.active {
+            background: #8b0000;
+            border-color: #ff2222;
+            color: white;
+        }
+
+        .sort-btn:hover {
+            background: #b30000;
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-card {
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b0000;
+            box-shadow: 0 10px 20px rgba(139,0,0,0.3);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .product-price {
+            color: #ff5555;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px 20px;
+            color: #aaa;
+            font-size: 16px;
+            grid-column: 1 / -1;
+        }
+
+        .footer {
+            background: #050505;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+            border-top: 1px solid #8b0000;
+            color: #777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <div class="logo-icon">
+            <img src="logo.png" alt="Red&BlackWear" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="logo-text">
+            <div class="main">Red&BlackWear</div>
+            <div class="sub">Это не про одежду. Это про характер.</div>
+        </div>
+    </div>
+    <div class="header-right">
+        EST. 2024
+    </div>
+</div>
+
+<div class="category-nav">
+    <button class="category-btn active" data-cat="men">Мужское</button>
+    <button class="category-btn" data-cat="women">Женское</button>
+    <button class="category-btn" data-cat="kids">Детское</button>
+</div>
+
+<div class="filters-section">
+    <div class="filters-title">Фильтр по типу:</div>
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="cap">Кепки</button>
+        <button class="filter-btn" data-filter="docker">Докер</button>
+        <button class="filter-btn" data-filter="tshirt">Футболка</button>
+        <button class="filter-btn" data-filter="hoodie">Худи</button>
+    </div>
+</div>
+
+<div class="sort-section">
+    <span class="sort-label">Сортировка:</span>
+    <button class="sort-btn" data-sort="asc">🔼 От меньшей цены к большей</button>
+    <button class="sort-btn active" data-sort="desc">🔽 От большей цены к меньшей</button>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+<div class="footer">
+    Red&BlackWear — стиль, который выбирают
+</div>
+
+<script>
+    const allProducts = [
+        // ========== МУЖСКОЕ ==========
+        { id: 22, name: "Кепка «Red&Black Gym»", type: "cap", category: "men", price: 7500, img: "муж_кепка_gym.jpg" },
+        { id: 23, name: "Худи с капюшоном «Red&Black Crew»", type: "hoodie", category: "men", price: 6000, img: "муж_худи_капюшон_crew.jpg" },
+        { id: 24, name: "Худи с воротом «Red&Black Crew»", type: "hoodie", category: "men", price: 6000, img: "муж_худи_ворот_crew.jpg" },
+        { id: 25, name: "Докер «Red&Black Cartel»", type: "docker", category: "men", price: 4000, img: "муж_доккер_cartel.jpg" },
+        { id: 26, name: "Футболка «OLD SCHOOL» белая", type: "tshirt", category: "men", price: 4000, img: "муж_футболка_олдскул_белая.jpg" },
+        { id: 27, name: "Футболка «OLD SCHOOL» чёрная", type: "tshirt", category: "men", price: 4000, img: "муж_футболка_олдскул_черная.jpg" },
+        { id: 28, name: "Футболка «Red&Black: Half»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_халф.jpg" },
+        { id: 29, name: "Футболка «Red&Black: Split»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_сплит.jpg" },
+        { id: 30, name: "Футболка «NDMC YAMAL»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_ямал.jpg" },
+        { id: 31, name: "Тайтсы «NDMC Red&Black Gym»", type: "tshirt", category: "men", price: 3500, img: "муж_тайтсы_gym.jpg" },
+        { id: 32, name: "Футболка чёрная «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "" },
+        { id: 33, name: "Футболка красная «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "" },
+        { id: 34, name: "Футболка бордовая «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_пейн_бордовая.jpg" },
+        { id: 35, name: "Футболка чёрная «Luxury pain, baby»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_люкс_черная.jpg" },
+        { id: 36, name: "Футболка красная «Luxury pain, baby»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_люкс_красная.jpg" },
+        { id: 37, name: "Футболка бордовая «Luxury pain, baby»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_люкс_бордовая.jpg" },
+        { id: 38, name: "Футболка чёрная «Luxury pain, baby. R&B Crew»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_крю_черная.jpg" },
+        { id: 39, name: "Футболка красная «Luxury pain, baby. R&B Crew»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_крю_красная.jpg" },
+        { id: 40, name: "Футболка бордовая «Luxury pain, baby. R&B Crew»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_крю_бордовая.jpg" },
+        { id: 41, name: "Футболка чёрная «Форму зарабатывают»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_форма_черная.jpg" },
+        { id: 42, name: "Футболка красная «Форму зарабатывают»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_форма_красная.jpg" },
+        { id: 43, name: "Футболка бордовая «Форму зарабатывают»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_форма_бордовая.jpg" },
+
+        // ========== ЖЕНСКОЕ ==========
+        { id: 10, name: "Футболка «Luxury pain, baby» красная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_люкс_красная.jpg" },
+        { id: 11, name: "Футболка «Luxury pain, baby» бордовая", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_люкс_бордовая.jpg" },
+        { id: 12, name: "Футболка «Luxury pain, baby» чёрная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_люкс_черная.jpg" },
+        { id: 13, name: "Футболка «Pain Dealer» красная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_пейн_красная.jpg" },
+        { id: 14, name: "Футболка «Pain Dealer» бордовая", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_пейн_бордовая.jpg" },
+        { id: 15, name: "Футболка «Pain Dealer» чёрная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_пейн_черная.jpg" },
+        { id: 16, name: "Футболка «Форму зарабатывают» красная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_форма_красная.jpg" },
+        { id: 17, name: "Футболка «Форму зарабатывают» бордовая", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_форма_бордовая.jpg" },
+        { id: 18, name: "Футболка «Форму зарабатывают» чёрная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_форма_черная.jpg" },
+        { id: 19, name: "Футболка «Luxury pain, baby. R&B Crew» красная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_крю_красная.jpg" },
+        { id: 20, name: "Футболка «Luxury pain, baby. R&B Crew» бордовая", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_крю_бордовая.jpg" },
+        { id: 21, name: "Футболка «Luxury pain, baby. R&B Crew» чёрная", type: "tshirt", category: "women", price: 3500, img: "жен_футболка_крю_черная.jpg" },
+
+        // ========== ДЕТСКОЕ ==========
+        { id: 1, name: "Футболка «Red&Black Family: Taz» белая", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_таг_белая.jpg" },
+        { id: 2, name: "Футболка «Red&Black Family: Taz» красная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_таг_красная.jpg" },
+        { id: 3, name: "Футболка «Red&Black Family: Taz» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_таг_черная.jpg" },
+        { id: 4, name: "Футболка «Keep Calm&ути-пути» красная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_калм_красная.jpg" },
+        { id: 5, name: "Футболка «Keep Calm&ути-пути» белая", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_калм_белая.jpg" },
+        { id: 6, name: "Футболка «Keep Calm&ути-пути» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_калм_черная.jpg" },
+        { id: 7, name: "Футболка «Red&Black Family: Duck» красная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_красная.jpg" },
+        { id: 8, name: "Футболка «Red&Black Family: Duck» белая", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_белая.jpg" },
+        { id: 9, name: "Футболка «Red&Black Family: Duck» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_черная.jpg" }
+    ];
+
+    let currentCategory = "men";
+    let currentFilter = "all";
+    let currentSort = "desc"; // по умолчанию дорогие сверху
+
+    function renderProducts() {
+        const grid = document.getElementById("productsGrid");
+        
+        let filtered = allProducts.filter(p => p.category === currentCategory);
+        if (currentFilter !== "all") {
+            filtered = filtered.filter(p => p.type === currentFilter);
+        }
+        
+        if (currentSort === "desc") {
+            filtered.sort((a, b) => b.price - a.price);
+        } else if (currentSort === "asc") {
+            filtered.sort((a, b) => a.price - b.price);
+        }
+        
+        if (filtered.length === 0) {
+            grid.innerHTML = `<div class="no-results">😕 Нет вещей в этой категории</div>`;
+            return;
+        }
+        
+        grid.innerHTML = filtered.map(product => {
+            let imageHtml = "";
+            if (product.img && product.img.trim() !== "") {
+                imageHtml = `<div class="product-img" style="background-image: url('${product.img}'); background-size: cover; background-position: center;"></div>`;
+            } else {
+                imageHtml = `<div class="product-img" style="background: linear-gradient(135deg, #2c0000, #0a0000);"><div style="color:#8b0000; font-size:42px; font-weight:bold;">R&B</div></div>`;
+            }
+            
+            return `
+                <div class="product-card">
+                    ${imageHtml}
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-price">${product.price.toLocaleString()} ₽</div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    }
+    
+    function setCategory(category) {
+        currentCategory = category;
+        currentFilter = "all";
+        
+        document.querySelectorAll(".category-btn").forEach(btn => {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-cat") === category) btn.classList.add("active");
+        });
+        
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-filter") === "all") btn.classList.add("active");
+        });
+        
+        renderProducts();
+    }
+    
+    function setFilter(filter) {
+        currentFilter = filter;
+        renderProducts();
+        
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-filter") === filter) btn.classList.add("active");
+        });
+    }
+    
+    function setSort(sort) {
+        currentSort = sort;
+        renderProducts();
+        
+        document.querySelectorAll(".sort-btn").forEach(btn => {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-sort") === sort) btn.classList.add("active");
+        });
+    }
+    
+    document.querySelectorAll(".category-btn").forEach(btn => {
+        btn.addEventListener("click", () => setCategory(btn.getAttribute("data-cat")));
+    });
+    
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => setFilter(btn.getAttribute("data-filter")));
+    });
+    
+    document.querySelectorAll(".sort-btn").forEach(btn => {
+        btn.addEventListener("click", () => setSort(btn.getAttribute("data-sort")));
+    });
+    
+    setCategory("men");
+</script>
+
+</body>
+</html>
