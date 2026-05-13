@@ -24,8 +24,6 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
             gap: 20px;
         }
 
@@ -82,15 +80,6 @@
                 font-size: 10px;
                 letter-spacing: 1px;
             }
-        }
-
-        .header-right {
-            font-size: 14px;
-            color: #ffffff;
-            background: rgba(0,0,0,0.3);
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
         }
 
         .category-nav {
@@ -240,7 +229,9 @@
 
         @media (max-width: 600px) {
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+                padding: 12px;
             }
         }
 
@@ -261,7 +252,7 @@
 
         .product-img {
             width: 100%;
-            height: 280px;
+            aspect-ratio: 1 / 1;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -320,32 +311,31 @@
             <div class="sub">Это не про одежду. Это про характер.</div>
         </div>
     </div>
-    <div class="header-right">
-        EST. 2024
-    </div>
 </div>
 
 <div class="category-nav">
     <button class="category-btn active" data-cat="men">Мужское</button>
     <button class="category-btn" data-cat="women">Женское</button>
     <button class="category-btn" data-cat="kids">Детское</button>
+    <button class="category-btn" data-cat="accessories">Аксессуары</button>
 </div>
 
 <div class="filters-section">
     <div class="filters-title">Фильтр по типу:</div>
     <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">Все</button>
-        <button class="filter-btn" data-filter="cap">Кепки</button>
+        <button class="filter-btn" data-filter="cap">Кепка</button>
         <button class="filter-btn" data-filter="docker">Докер</button>
         <button class="filter-btn" data-filter="tshirt">Футболка</button>
         <button class="filter-btn" data-filter="hoodie">Худи</button>
+        <button class="filter-btn" data-filter="accessory">Аксессуары</button>
     </div>
 </div>
 
 <div class="sort-section">
     <span class="sort-label">Сортировка:</span>
-    <button class="sort-btn" data-sort="asc">🔼 От меньшей цены к большей</button>
-    <button class="sort-btn active" data-sort="desc">🔽 От большей цены к меньшей</button>
+    <button class="sort-btn" data-sort="asc">🔼 По возрастанию стоимости</button>
+    <button class="sort-btn active" data-sort="desc">🔽 По убыванию стоимости</button>
 </div>
 
 <div class="products-grid" id="productsGrid"></div>
@@ -357,7 +347,7 @@
 <script>
     const allProducts = [
         // ========== МУЖСКОЕ ==========
-        { id: 22, name: "Кепка «Red&Black Gym»", type: "cap", category: "men", price: 7500, img: "муж_кепка_gym.jpg" },
+        { id: 22, name: "Кепка «Red&BlackGym»", type: "cap", category: "men", price: 7500, img: "муж_кепка_gym.jpg" },
         { id: 23, name: "Худи с капюшоном «Red&Black Crew»", type: "hoodie", category: "men", price: 6000, img: "муж_худи_капюшон_crew.jpg" },
         { id: 24, name: "Худи с воротом «Red&Black Crew»", type: "hoodie", category: "men", price: 6000, img: "муж_худи_ворот_crew.jpg" },
         { id: 25, name: "Докер «Red&Black Cartel»", type: "docker", category: "men", price: 4000, img: "муж_доккер_cartel.jpg" },
@@ -366,7 +356,7 @@
         { id: 28, name: "Футболка «Red&Black: Half»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_халф.jpg" },
         { id: 29, name: "Футболка «Red&Black: Split»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_сплит.jpg" },
         { id: 30, name: "Футболка «NDMC YAMAL»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_ямал.jpg" },
-        { id: 31, name: "Тайтсы «NDMC Red&Black Gym»", type: "tshirt", category: "men", price: 3500, img: "муж_тайтсы_gym.jpg" },
+        { id: 31, name: "Тайтсы «NDMC Red&BlackGym»", type: "tshirt", category: "men", price: 3500, img: "муж_тайтсы_gym.jpg" },
         { id: 32, name: "Футболка чёрная «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "" },
         { id: 33, name: "Футболка красная «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "" },
         { id: 34, name: "Футболка бордовая «Pain Dealer»", type: "tshirt", category: "men", price: 3500, img: "муж_футболка_пейн_бордовая.jpg" },
@@ -403,12 +393,28 @@
         { id: 6, name: "Футболка «Keep Calm&ути-пути» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_калм_черная.jpg" },
         { id: 7, name: "Футболка «Red&Black Family: Duck» красная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_красная.jpg" },
         { id: 8, name: "Футболка «Red&Black Family: Duck» белая", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_белая.jpg" },
-        { id: 9, name: "Футболка «Red&Black Family: Duck» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_черная.jpg" }
+        { id: 9, name: "Футболка «Red&Black Family: Duck» чёрная", type: "tshirt", category: "kids", price: 2500, img: "дет_футболка_дак_черная.jpg" },
+
+        // ========== АКСЕССУАРЫ И УХОД ==========
+        { id: 44, name: "Зонт-трость «Red&Black Outfit»", type: "accessory", category: "accessories", price: 9900, img: "акс_зонт_трость.jpg" },
+        { id: 45, name: "Зонт (в чехле) «Red&Black Outfit»", type: "accessory", category: "accessories", price: 4900, img: "акс_зонт_чехол.jpg" },
+        { id: 46, name: "Масло для бороды (ручная работа)", type: "accessory", category: "accessories", price: 1990, img: "акс_масло_бороды.jpg" },
+        { id: 47, name: "Полотенце «Red&BlackGym» среднее", type: "accessory", category: "accessories", price: 700, img: "акс_полотенце_среднее.jpg" },
+        { id: 48, name: "Гель для душа 200 мл", type: "accessory", category: "accessories", price: 610, img: "акс_гель_200.jpg" },
+        { id: 49, name: "Гель для душа 100 мл", type: "accessory", category: "accessories", price: 550, img: "акс_гель_100.jpg" },
+        { id: 50, name: "Полотенце «Red&BlackGym» маленькое", type: "accessory", category: "accessories", price: 500, img: "акс_полотенце_малое.jpg" },
+        { id: 51, name: "Брелок «Спортклуб №1»", type: "accessory", category: "accessories", price: 500, img: "акс_брелок.jpg" },
+        { id: 52, name: "Подставка под телефон «Red&BlackGym»", type: "accessory", category: "accessories", price: 500, img: "акс_подставка.jpg" },
+        { id: 53, name: "Соль для ванной 400 гр", type: "accessory", category: "accessories", price: 480, img: "акс_соль.jpg" },
+        { id: 54, name: "Мыло 60 гр", type: "accessory", category: "accessories", price: 380, img: "акс_мыло.jpg" },
+        { id: 55, name: "Пена для ванны", type: "accessory", category: "accessories", price: 250, img: "акс_пена.jpg" },
+        { id: 56, name: "Автомобильный ароматизатор «Red&BlackGym»", type: "accessory", category: "accessories", price: 150, img: "акс_ароматизатор.jpg" },
+        { id: 57, name: "Крем для солярия", type: "accessory", category: "accessories", price: 120, img: "акс_крем.jpg" }
     ];
 
     let currentCategory = "men";
     let currentFilter = "all";
-    let currentSort = "desc"; // по умолчанию дорогие сверху
+    let currentSort = "desc";
 
     function renderProducts() {
         const grid = document.getElementById("productsGrid");
